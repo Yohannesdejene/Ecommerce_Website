@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+</head>
+<body>
+
+<div id="nameandphoto">
+
+ <% if(datas) {%>
+<div id="name">
+<ul></ul>
+  <%for(var i=0;i<datas.length;i++){%>
+      <li><%=datas[i].Fname%></li>
+   
+</div>
+<div id="photo">
+<img  src="http://localhost:3000/images/upload_images/<%=datas[i].profilePhoto%>"  alt="profilePhoto"> 
+<%}%>
+<%}else{%>
+  <p>"no data yet"<%}%></p>
+</ul>
+</div>
+</div>
+    
+
+    <nav>
+        <!-- <h4>MARKET ONLINE</h4>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/user/login">LOGIN</a></li>
+          <li><a href="/user/signup">REGISTER</a></li>
+        </ul>
+      </nav> -->
+
+
+    <img src="" alt="">
+</body>
+</html
