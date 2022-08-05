@@ -1,0 +1,62 @@
+.topnav{
+background-color:rgb(30, 198, 210);
+
+overflow: hidden;
+}
+
+.topnav a{
+color:white;
+
+float:left;
+font-size:17px;
+text-decoration:none;
+padding: 10px 25px ;
+}
+.topnav a:hover {
+background-color:grey;
+color:white;
+}
+
+
+.topnav a.active {
+    background-color:rgb(224, 104, 18);
+    color:white;
+}
+.form{
+    width: 700px;
+    height:650px;
+    border: 4px solid black;
+    margin: 5px 400px;
+    background-color:cadetblue;
+    border-radius:10%;
+}
+
+body{
+    background-image: url("/images/images2.gif");
+}
+
+.label{
+position:relative;
+left:150px;
+font-size:19px;
+padding:50px;
+}
+.input{
+position:relative;
+left:170px;
+width:300px;
+
+}
+#add{
+position:relative;
+left:180px;
+}
+#button{
+position:relative;
+left:180px;
+background-color:coral;
+width:80px;
+height:30px;
+border-radius:50%;
+
+}

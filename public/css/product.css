@@ -1,21 +1,23 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
 nav{
-  background-color:chocolate;
+  background-color:rgb(30, 198, 210);
   color:white;
   padding:30px 60px;
   display:flex;
   justify-content:space-between;
   top:0px;
+  height:70px;
+ margin:10px 10px 10px 10px;
 }
 nav ul{
   display:flex;
   justify-content:space-around;
   align-items:center;  
+ 
 }
 nav li{
   list-style:none;
+  font-size:20px;
 
 }
 nav li a{
@@ -25,12 +27,13 @@ nav li a{
   padding:5px 8px;
 }
 nav li a:hover{
-color:rgb(0,80,150);
+background-color:rgb(226, 131, 43);
 text-decoration:none;
+border-radius:50%;
 }
 
 :root{
-    --white-light: rgba(255, 255, 255, 0.5);
+    --white-light: white;
     --alice-blue: #f8f9fa;
     --carribean-green: #40c9a2;
     --gray: #ededed;
@@ -40,7 +43,7 @@ text-decoration:none;
     margin: 0;
     box-sizing: border-box;
 }
-body{
+.body{
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -135,6 +138,7 @@ img{
     color: white;
 }
 .btn-cart:hover{
+
     background:#eaa001;
 }
 .btn-buy{
@@ -282,4 +286,26 @@ img{
     }
     .product{
         margin-right: 1rem;
-      
+        margin-left: 1rem;
+    }
+    .products .text-light{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1336px){
+    .product-items{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .product-collection-wrapper{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .flex{
+        height: 60vh;
+    }
+    .product-col-left{
+        height: 121.5vh;
+    }
+}
+

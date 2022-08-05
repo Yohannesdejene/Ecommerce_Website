@@ -4,19 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"    href="/css/addProduct.css"/>
     <title>title</title>
 </head>
 <body>
-  <img src="../public/images/ecommerce.jpg" alt="image">;
 
-  <nav>
-        <h4>PRODUCT ADD</h4>
-        <ul>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/user/login">LOGIN</a></li>
-          <li><a href="/user/signup">REGISTER</a></li>
-        </ul>
-      </nav>
+<div class="topnav">
+          <a  href="/admin/home">HOME</a>
+          <a class="active" href="/admin/addProduct">ADD PRODUCTS</a>
+          <a href="/admin/soldProduct">SOLD PRODUCTS</a>
+          
+</div>
+<div class="container">
+ <div class="box">
+  <div class="box-row">
+   <div class="boxs form">
+     <form action="/home/login" method="post">
+        <h1 id="add">ADD PRODUCTS<h1>
+       <div class="enter">
+             <div class="name">
+                <label for="name" class="label">NAME OF THE PRODUCT </label>
+                  <div class="name_input_div">
+                    <input type="text" class="input" id="name" name="name" >
+                  </div>
+             </div>
+            
+             <div class="oldprice_div">
+                    <label for="oldprice" class="label">OLD PRICE</label>
+                    <div class="oldprice_input_div">
+                      <input type="text" class="input" id="oldprice" name="oldprice">
+                    </div>
+                  </div>
+                  <div class="newprice_div">
+                    <label for="newprice" class="label">NEW PRICE</label>
+                    <div class="newprice_input_div">
+                      <input type="text" class="input" id="newprice" name="newprice">
+                    </div>
+                  </div>
+                  <div class="description">
+                    <label for="desciption" class="label">DESCRIPTION </label>
+                      <div class="desciption_input_div">
+                        <input type="text" class="input" id="desciption" name="desciption" >
+                      </div>
+                 </div>
+                 <div class="gender">
+                  <label for="gender" class="label">GENDER </label>
+                    <div class="gender_input_div">
+                      <label for="male" class="label">MALE </label>
+                      <input type="radio" class="radio" id="male" name="male" value="MALE">
+                      <label for="female" class="label">FEMALE </label>
+                      <input type="radio" class="radio" id="female" name="female" value="FEMALE">
+                      <label for="other" class="label">OTHER</label>
+                      <input type="radio" class="radio" id="other" name="other" value="OTHER">
+
+                    </div>
+               </div>
+               <div class="picture">
+                <label for="picture" class="label"></label> 
+                  <div class="picture_input_div">
+                    <label for="picture" class="label" >UPLOAD PICTURE</label>
+                    <input type="file" class="input" id="picture" name="picture" >
+                    
+                  </div>
+             </div>
+      
+                  <button type="submit" id="button">LOGIN</button>
+               </div>
+
+        </div>
+     
+      </form>
+    </div>
+    
+   
+  </div>
+ </div>
+</div>
+
 
 </body>
-</html
+</html>

@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, STRING
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class product extends Model {
@@ -18,12 +18,26 @@ models.product.belongsToMany(models.user, {through:models.purchased})
     }
   }
   product.init({
-    Pname:{   
+   name:{   
       type:DataTypes.STRING,
     },
-   Ppicture:{
+   picture:{
     type:DataTypes.STRING,
-   }
+   },
+   gender:{
+    type:DataTypes.STRING,
+   },
+   oldprice:{
+    type:DataTypes.DOUBLE,
+   },
+   newprice:{
+    type:DataTypes.DOUBLE,
+   },
+   description:{
+    type:DataTypes.STRING,
+   },
+
+
 
   }, {
     sequelize,

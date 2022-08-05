@@ -8,15 +8,16 @@ const router=express.Router();
 
 router.get("/home",(req,res)=>{
 
-    res.render("adminHome" );
+    res.render("adminHome");
 })
 authController.authorization
 router.get("/addProduct",(req,res)=>{
 
-    res.render("products");
+    res.render("addProduct");
 })
-router.get("/soldProduct",authController.authorization,(req,res)=>{
-res.render("soldPr")
+//authController.authorization
+router.get("/soldProduct",(req,res)=>{
+res.render("soldProduct");
 })
 
 
