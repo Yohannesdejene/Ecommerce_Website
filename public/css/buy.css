@@ -1,0 +1,95 @@
+body{
+    background-color:dimgray;
+}
+
+.boxes{
+    position:absolute;
+    width:70%;
+    height:600px;
+    left:200px;
+   border: 2px solid rgb(6, 6, 6);
+    
+    }
+
+#leftbox {
+    position:relative;
+    float:left; 
+    background-color:lightgray;
+    width:50%;
+    height:600px;
+    align-items: center;
+}
+#leftbox:hover{
+    background-color:burlywood;
+  
+}
+#pic{
+    position:relative;
+   left:50px;
+   top:70px;
+   width:80%;
+ border-radius:10%;
+}
+#pic:hover{
+    width:90%;
+    height:60%;
+
+}
+
+#rightbox{
+    position:relative;
+    float:right; 
+    width:50%;
+    height:600px;
+    background-color:cornsilk;
+}
+
+h1{
+    color:green;
+    text-align:center;
+}
+#button{
+    position:relative;
+    left:50px;
+    top:70px;
+    width:20%;
+    height:50px;
+  border-radius:10%;
+  background-color:black;
+  color:white;
+
+}
+#button:hover{
+background-color:blue;
+}
+#name{
+    position:relative;
+    font-size:25px;
+    left:50px;
+    top:70px;
+    width:80%;
+  border-radius:10%;
+  color:blue;
+}
+#price{
+    position:relative;
+    left:50px;
+    top:70px;
+    width:80%;
+    color:red;
+  border-radius:10%;
+}
+#description{
+    position:relative;
+   left:50px;
+   top:70px;
+   width:80%;
+ border-radius:10%;
+}
+#picture{
+    position:relative;
+    top:50px;
+    left:10%;
+    width:80%;
+    height:60%;
+}

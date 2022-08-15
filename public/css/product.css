@@ -2,7 +2,7 @@
 nav{
   background-color:rgb(30, 198, 210);
   color:white;
-  padding:30px 60px;
+  padding:30px 80px;
   display:flex;
   justify-content:space-between;
   top:0px;
@@ -26,6 +26,8 @@ nav li a{
   font-weight:bold;
   padding:5px 8px;
 }
+
+
 nav li a:hover{
 background-color:rgb(226, 131, 43);
 text-decoration:none;

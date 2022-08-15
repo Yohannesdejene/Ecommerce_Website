@@ -1,4 +1,28 @@
-body{
+.topnav{
+    background-color:rgb(30, 198, 210);
+    
+    overflow: hidden;
+    }
+    
+    .topnav button{
+    color:white;
+    
+    float:left;
+    font-size:17px;
+    text-decoration:none;
+    padding: 10px 25px ;
+    }
+    .topnav button:hover {
+    background-color:grey;
+    color:white;
+    }
+    
+    
+    .topnav button.active {
+        background-color:rgb(224, 104, 18);
+        color:white;
+    }
+  body{
     background-color:lightslategrey
 }
 .label{

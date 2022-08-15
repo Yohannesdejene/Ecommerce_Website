@@ -15,11 +15,8 @@
           <a href="/admin/soldProduct">SOLD PRODUCTS</a>
           
 </div>
-<div class="container">
- <div class="box">
-  <div class="box-row">
-   <div class="boxs form">
-     <form action="/home/login" method="post">
+
+     <form action="/admin/addProduct" enctype="multipart/form-data" method="post">
         <h1 id="add">ADD PRODUCTS<h1>
        <div class="enter">
              <div class="name">
@@ -34,7 +31,7 @@
                     <div class="oldprice_input_div">
                       <input type="text" class="input" id="oldprice" name="oldprice">
                     </div>
-                  </div>
+              </div>
                   <div class="newprice_div">
                     <label for="newprice" class="label">NEW PRICE</label>
                     <div class="newprice_input_div">
@@ -44,42 +41,46 @@
                   <div class="description">
                     <label for="desciption" class="label">DESCRIPTION </label>
                       <div class="desciption_input_div">
-                        <input type="text" class="input" id="desciption" name="desciption" >
+                        <input type="text" class="input" id="desciption" name="description" >
                       </div>
                  </div>
                  <div class="gender">
-                  <label for="gender" class="label">GENDER </label>
+                  <label for="gender" class="label">GENDER :</label>
                     <div class="gender_input_div">
                       <label for="male" class="label">MALE </label>
-                      <input type="radio" class="radio" id="male" name="male" value="MALE">
+                      <input type="radio" class="radio" id="male" name="gender" value="MALE">
                       <label for="female" class="label">FEMALE </label>
-                      <input type="radio" class="radio" id="female" name="female" value="FEMALE">
+                      <input type="radio" class="radio" id="female" name="gender" value="FEMALE">
                       <label for="other" class="label">OTHER</label>
-                      <input type="radio" class="radio" id="other" name="other" value="OTHER">
+                      <input type="radio" class="radio" id="other" name="gender" value="OTHER">
 
                     </div>
-               </div>
+               </div> 
+               <div class="category">
+                <label for="category" class="label">CATEGORY : </label>
+               <div class="category_input_div">
+                <label for="shoe" class="label">SHOE </label>
+                <input type="radio" class="radio" id="shoe" name="category" value="SHOE">
+                <label for="cosmotics" class="label">COSMOTICS </label>
+                <input type="radio" class="radio" id="consmotics" name="category" value="COSMOTICS">
+                <label for="electronics" class="label">ELECTRONICS</label>
+                <input type="radio" class="radio" id="electronics" name="category" value="ELECTRONICS">
+              </div>
+              </div>
                <div class="picture">
-                <label for="picture" class="label"></label> 
                   <div class="picture_input_div">
                     <label for="picture" class="label" >UPLOAD PICTURE</label>
-                    <input type="file" class="input" id="picture" name="picture" >
-                    
+                    <input type="file" class="input" id="picture" name="picture" >                   
                   </div>
              </div>
       
                   <button type="submit" id="button">LOGIN</button>
-               </div>
+               
 
         </div>
      
       </form>
-    </div>
     
-   
-  </div>
- </div>
-</div>
 
 
 </body>

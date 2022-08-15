@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"    href="/css/logintobuy.css"/>
+    <title>login</title>
+    <script>
+    
+    function logintobuy() {
+      var params = new URLSearchParams(window.location.search),
+       picture = params.get("picture"),
+       price = params.get("price"),
+       name = params.get("name");
+       const img = "this is the";
+        const data = { name, img };
+     fetch(
+       "http://localhost:3000/user/logintobuy?name=" +
+         name +
+         "&price=" +
+         price +
+         "&picture=" +
+         picture,
+       {
+         method: "GET",
+
+         headers: {
+           "Content-type": "application/json; charset=UTF-8",
+         },
+         
+       }
+     )
+       .then((res) => res.text())
+       .then((htmlStr) => {
+         document.open();
+         document.write(htmlStr);
+         document.close();
+       });
+     }
+     function signuptobuy() {
+      var params = new URLSearchParams(window.location.search),
+          picture = params.get("picture"),
+          price = params.get("price"),
+          name = params.get("name");
+          const img = "this is the";
+        const data = { name, img };
+     fetch(
+       "http://localhost:3000/user/signuptobuy?name=" +
+         name +
+         "&price=" +
+         price +
+         "&picture=" +
+         picture,
+       {
+         method: "GET",
+
+         headers: {
+           "Content-type": "application/json; charset=UTF-8",
+         },
+       
+       }
+     )
+       .then((res) => res.text())
+       .then((htmlStr) => {
+         document.open();
+         document.write(htmlStr);
+         document.close();
+       });
+     }
+
+ </script>
+
+   
+</head>
+<body>
+    <div class="topnav">
+    
+        <button class="active" type="button" onclick="logintobuy()">LOGIN</button>
+        <button type="button" onclick="signuptobuy()">SIGN UP</button>
+        
+    </div>
+  <form action="/user/logintobuy" method="post" class="form">
+    <h1 id="login">LOG IN<h1>
+    <div class="emailpass">
+     
+  <div class="email_div">
+    <label for="email" class="label">Email</label>
+    <div class="email_input_div">
+      <input type="text" class="input" id="email" name="email" >
+    </div>
+  </div>
+  <br><br><br>
+  <div class="password_div">
+    <label for="password" class="label">Password</label>
+    <div class="password_input_div">
+      <input type="password" class="input" id="password" name="password">
+    </div>
+   
+    <br><br><br>
+    <button type="submit" id="button">LOGIN</button>
+  </div>
+  <div class="message">
+   <%=message%>
+  </div>
+</div>
+</form>
+ 
+
+
+</body>
+</html

@@ -6,15 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
 
-    <link rel="stylesheet" href="/css/signup.css" />
+    <link rel="stylesheet" href="/css/signuptobuy.css" />
 
     <title>Document</title>
-  </head>
+    <script>
+      var params = new URLSearchParams(window.location.search),
+         picture = params.get("picture"),
+         price = params.get("price"),
+         name = params.get("name");
+       function logintobuy() {
+        var params = new URLSearchParams(window.location.search),
+         picture = params.get("picture"),
+         price = params.get("price"),
+         name = params.get("name");
+       fetch(
+         "http://localhost:3000/user/logintobuy?name=" +
+           name +
+           "&price=" +
+           price +
+           "&picture=" +
+           picture,
+         {
+           method: "GET",
 
-  <body>
-    
+           headers: {
+             "Content-type": "application/json; charset=UTF-8",
+           },
+           
+         }
+       )
+         .then((res) => res.text())
+         .then((htmlStr) => {
+           document.open();
+           document.write(htmlStr);
+           document.close();
+         });
+       }
+       function signuptobuy() {
+       
+       fetch(
+         "http://localhost:3000/user/signuptobuy?name=" +
+           name +
+           "&price=" +
+           price +
+           "&picture=" +
+           picture,
+         {
+           method: "GET",
+
+           headers: {
+             "Content-type": "application/json; charset=UTF-8",
+           },
+         
+         }
+       )
+         .then((res) => res.text())
+         .then((htmlStr) => {
+           document.open();
+           document.write(htmlStr);
+           document.close();
+         });
+       }
+  
+   </script>
+  
+</head>
+<body>
+   <div class="topnav">
+   
+       <button  type="button" onclick="logintobuy()">LOGIN</button>
+       <button class="active" type="button" onclick="signuptobuy()">SIGN UP</button>
+        
+    </div>
  
-   <form action="/home/signup" class="form" enctype="multipart/form-data" method="POST" >
+   <form action="/user/signuptobuy" class="form" enctype="multipart/form-data" method="POST" >
       <h1 id="signup">SIGN UP<h1>
     <div class="whole">
       <br>

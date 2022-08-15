@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link href="/css/buy.css" rel="stylesheet" />
+    <script>
+      function get() {
+        var params = new URLSearchParams(window.location.search),
+          picture = params.get("picture"),
+          price = params.get("price"),
+          name = params.get("name");
+       
+        const todo = {
+          title: "Some really important work to finish",
+        };
+
+      
+        const img = "this is the";
+        const data = { name, img };
+        fetch(
+          "http://localhost:3000/user/tobuy?name=" +
+            name +
+            "&price=" +
+            price +
+            "&picture=" +
+            picture,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+
+        // window.open(url);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="boxes">
+      <div id="leftbox">
+        <img
+          id="picture"
+          src="/images/product_image/images.jpg"
+          alt="picture"
+        />
+      </div>
+      <div id="rightbox">
+        <h1 id="name">NAME : NAME OF THE PRODUCT</h1>
+        <br /><br />
+
+        <h1 id="price">price : 500 $</h1>
+
+        <br /><br />
+        <h4 id="description"><%if(data){%><%=data.description%> <%}%></h4>
+
+        <br /><br />
+        <br />
+        <input type="button" id="button" value="BUY" onclick="get()" />
+      </div>
+    </div>
+    <script>
+      // (A) GET THE PARAMETERS
+      var params = new URLSearchParams(window.location.search),
+        picture = params.get("picture"),
+        price = params.get("price"),
+        name = params.get("name");
+
+      document.getElementById("price").innerHTML = price;
+      document.getElementById("name").innerHTML = name;
+
+      document.getElementById("picture").src =
+        "/images/product_image/" + picture;
+
+      // (B) IT WORKS!
+      // ["Hello", "World"]
+    </script>
+  </body>
+</html>

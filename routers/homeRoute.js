@@ -14,27 +14,10 @@ const router=express.Router();
 
 
 
-router.get("/signup",(req,res)=>{
-   res.render("signup",{message:"ohhhhhhhh"});
-})
-router.get("/new",async (req,res)=>{
-   const data =await sequelize.models.user.findOne({where:{email:"yohannesdejene23@gmail.com"}});
-console.log(data);
-console.log(data.email)
-console.log(data.Fname);
-res.send(data);
-})
-router.get("/signup",(req,res)=>{
-   res.render("signup",{message:"ohhhhhhhh"});
-})
+
 router.get("/login",(req,res)=>{
-res.render("login",{message:""});
+   res.render("login",{message:"hdhdhdh"});
 })
-
-
-
-
- 
 
 const mysecret=process.env.SECRET;
 router.post("/login",async(req,res)=>{
@@ -49,6 +32,7 @@ if(existemail){
          // password is valid
          if(data.userType=="admin"){
             const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
+         
             return res
               .cookie("token", token, {
                 httpOnly: true,
@@ -61,7 +45,15 @@ if(existemail){
         //res.render("adminHome",{data:data})
          }
          else{
-       res.render("home",{message:"logged in succesufully"})     
+    const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
+     return res
+    .cookie("token", token, {
+      httpOnly: true,
+    maxAge:1000*60*60*24,
+      Secure:true,
+  
+    })
+   .render("home",{data:data});   
          }
      }else{
       res.render("login",{message:"PASSWORD DON'T MATCH"});
@@ -77,9 +69,8 @@ else{
 
 
 
-    const upload = multer({ storage:multer.memoryStorage() });
-    
-    router.post("/signup",async(req,res)=>{
+
+ router.post("/signup",async(req,res)=>{
      
        console.log(req.body.fname);
     console.log(req.body.email);
@@ -90,11 +81,7 @@ else{
        const email=req.body.email;
        const password=req.body.password;
        const address=req.body.address;
-       let image;
-       if(req.file){
-     image=req.file.buffer.toString("base64");
-     console.log("yes thre is file");
-       }
+       
     
     const existemail=await sequelize.models.user.findOne({ where: { email: email } });
     if(existemail){
@@ -125,10 +112,7 @@ else{
                      Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"admin"
                
                         }).then(async (data)=>{
-               
-                 //     const datan=await sequelize.models.user.findOne({ where: { email: email } });
-                 // //res.render("profile",{title:"profile",profiledata:datan});
-                 // res.render("login");
+               res.cookie('reg',"true", { httpOnly: true });
                res.render("signup",{message:"register to the system"});
               console.log("data sent");
            
@@ -146,52 +130,8 @@ else{
    
        
       
-    })
+   });
+
+   module.exports=router
 
 
-const maxAge=1*24*60*60;
-const generateToken=(email)=>{
-return jwt.sign({email},"mysecret",{
-expiresIn:maxAge
-})
-};
-
-router.get("/login",(req,res)=>{
-    res.render("login",{verify:"hdhdhdh"});
-})
-router.post("/login",async(req,res)=>{
-  const email=req.body.email;
-  const password=req.body.password;
- const data= await sequelize.models.user.findOne({
-where:{email:email}
- });
- if(data){
-
-    bcrypt.compare(req.body.password, data.password, function(err, result) {
-        if (err){
-          // handle error
-          console.log("err in bcrypt ")
-        }
-        if (result){
-          // Send JWT
-const token=generateToken(data.email)
-res.cookie("jwt",token,{httpOnly:true,maxAge:maxAge*1000});
-res.status(201).send("logges in");
-
-        } else {
-          // response is OutgoingMessage object that server response http request
-         
-         return res.render("login",{verify:"passwordMistmatch"})
-
-        }
-      })
-
- }
- else{
-     res.render("login",{verify:"User Not Found"});
- }
-
-
-})
-
-module.exports=router;

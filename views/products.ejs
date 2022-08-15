@@ -7,19 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/product.css" />
     <!-- font awesome -->
-    <script
-      src="https://kit.fontawesome.com/dbed6b6114.js"
-      crossorigin="anonymous"
-    ></script>
+    
   </head>
 <body>
   <div class="body">
     <nav>
    
       <ul>
-        <li><a href="/">HOME</a></li>
-        <li><a href="/admin/login">LOGIN</a></li>
-        <li><a href="">REGISTER</a></li>
+        <li><a href="/user/products">HOME</a></li>
+        <li><a href="/user/login">LOGIN</a></li>
+        <li><a href="/user/signup">REGISTER</a></li>
       </ul>
       </nav>
     <div class="products">
@@ -42,25 +39,29 @@
             
             <div class="product-content">
               <div class="product-img">
-                <a href="/index2.html">
-                  <img src="http://localhost:3000/images/upload_images/<%=datas[i].profilePhoto%>" alt="product image" />
-                </a>
+            <a href='/user/buy?picture=<%=datas[i].picture%>&name=<%=datas[i].name%>&price=<%=datas[i].newprice%>'>
+                <img id="picture" src="http://localhost:3000/images/product_image/<%=datas[i].picture%>" alt="<%=datas[i].picture%>" />
+                
               </div>
               <div class="product-btns">
-              </form action="/index2.html" method="post">
-                <button type="button" class="btn-cart">
+                <a href='/user/buy?picture=<%=datas[i].picture%>&name=<%=datas[i].name%>&price=<%=datas[i].newprice%>'>
+                <button type="button" name="button"  class="btn-cart">
                   add to cart
                  
                   <span><i class="fas fa-plus"></i></span>
                 </button>
-              </form>
-                <button type="button" class="btn-buy">
+              </a>
+              <a href='/user/buy?picture=<%=datas[i].picture%>&name=<%=datas[i].name%>&price=<%=datas[i].newprice%>'>
+                <button type="button" name="button"  class="btn-buy">
                   buy now
                   <span><i class="fas fa-shopping-cart"></i></span>
                 </button>
-             </form>
+              </a>
+              
+            
             </div>
             </div>
+        
 
             <div class="product-info">
               <div class="product-info-top">
@@ -74,11 +75,11 @@
                   
                 </div>
               </div>
-              <a href="/index2.html" class="product-name"
-                ><%=datas[i].Fname%></a
+              <a href="/index2.html" id="name" class="product-name"
+                ><%=datas[i].name%></a
               >
-              <p class="product-price">$ 150.00</p>
-              <p class="product-price">$ 133.00</p>
+              <p class="product-price"><%=datas[i].oldprice%></p>
+              <p id="newprice" class="product-price"><%=datas[i].newprice%></p>
             </div>
 
             <div class="off-info">
@@ -87,34 +88,13 @@
             
           </div>
              
-          <!-- end of single product -->
-          <!-- single product -->
-          
-          <!-- end of single product -->
-          <!-- single product -->
          
-          <!-- end of single product -->
-          <!-- single product -->
-          
-          <!-- end of single product -->
-          <!-- single product -->
-          
-          <!-- end of single product -->
-          <!-- single product -->
-          
-          <!-- end of single product -->
-          <!-- single product -->
-          
-          <!-- end of single product -->
-          <!-- single product -->
-          
-          <!-- end of single product -->
       
           <%}%>
       <%}else{%>
           <%}%>
         </div>
-        
+      </form>
       </div>
 
       
@@ -189,5 +169,28 @@
       </div>
     </div>
   </div>
+  <script>
+    function go () {
+      for(var i=0;i<datas.length;i++){
+      // (A) VARIABLES TO PASS
+      let price = document.getElementById("newprice").innerHTML,
+         name=datas[i].name,
+         img=document.getElementById("picture"),
+          picture=img.getAttribute("alt");
+         
+      }
+      // (B) URL PARAMETERS
+      let params = new URLSearchParams();
+      params.append("picture",picture);
+      params.append("price", price);
+      params.append("name", name);
+     
+    
+      // (C) GO!
+      var url = "/user/buy?" + params.toString();
+      location.href = url;
+      // window.open(url);
+    }
+    </script>
 </body>
 </html>
