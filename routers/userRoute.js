@@ -81,9 +81,25 @@ router.post("/tobuy",async(req,res)=>{
 const name=req.query.name;
 const price=req.query.price;
 const picture=req.query.picture;
-console.log(name);
-console.log(price);
-console.log(picture);
+
+res.cookie("name", name, {
+      httpOnly: true,
+    maxAge:1000*60*60*24,
+      Secure:true,
+   });
+res.cookie("picture",picture,{
+   httpOnly: true,
+   maxAge:1000*60*60*24,
+     Secure:true,
+});
+res.cookie("price",price,{
+   httpOnly: true,
+   maxAge:1000*60*60*24,
+     Secure:true,
+});
+
+
+
  const token = req.cookies.token;
    if (token) {
       const data = jwt.verify(token, mysecret);
@@ -120,10 +136,14 @@ router.post("/logintobuy",async(req,res)=>{
    const email=req.body.email;
    const password=req.body.password;
    
-   const name=req.query.name;
-   const price=req.query.price;
-   const picture=req.query.picture;
+   const name = req.cookies.name;
+   const picture = req.cookies.picture;
+   const price= req.cookies.price;
+   console.log("name",name);
+   console.log("picture",picture);
+   console.log("price",price);
    
+  
       const existemail=await sequelize.models.user.findOne({ where: { email: email } });
    if(existemail){
       const data =await sequelize.models.user.findOne({where:{email:email}});
@@ -133,24 +153,34 @@ router.post("/logintobuy",async(req,res)=>{
        
                const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
 
+               res.cookie("token", token, {
+                  httpOnly: true,
+                maxAge:1000*60*60*24,
+                  Secure:true});
               
   
           const productdata=await sequelize.models.product.findOne({where:{name:name}&&{picture:picture}});
+          console.log(productdata);
+          console.log("product id",productdata.id)
+          if(productdata){
                    const productId=productdata.id;
                    sequelize.models.purchased.create({
                    time:Date.now(),
-                   productId: productId,
+                   productId:productId,
                    userEmail:existemail,
-                   }).then(data=>{
+                  
+                   }).then((data)=>{
                  console.log("data sent");
-                    return res.cookie("token", token, {
-                     httpOnly: true,
-                   maxAge:1000*60*60*24,
-                     Secure:true,}).render("afterbuy");
-                   }).catch(err=>{
+           
+                     return res.render("afterbuy");
+                    })
+                  .catch(err=>{
                       console.log("error");
+                      console.log(err);
                    });
-     
+                  }else{
+                  res.send("no product data");
+                  }
 
 
                 
