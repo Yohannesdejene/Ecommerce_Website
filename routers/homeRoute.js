@@ -31,7 +31,7 @@ if(existemail){
       if (result) {
          // password is valid
          if(data.userType=="admin"){
-            const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
+            const token = jwt.sign({ email:data.email,userId:data.id, utype:data.userType }, mysecret);
          
             return res
               .cookie("token", token, {
@@ -45,7 +45,7 @@ if(existemail){
         //res.render("adminHome",{data:data})
          }
          else{
-    const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
+    const token = jwt.sign({ email:data.email,userId:data.id, utype:data.userType }, mysecret);
      return res
     .cookie("token", token, {
       httpOnly: true,
@@ -53,7 +53,7 @@ if(existemail){
       Secure:true,
   
     })
-   .render("home",{data:data});   
+   .render("products",{data:data});   
          }
      }else{
       res.render("login",{message:"PASSWORD DON'T MATCH"});
@@ -68,7 +68,9 @@ else{
 })
 
 
-
+router.get("/signup",(req,res)=>{
+   res.render("signup",{message:"hdhdhdh"});
+})
 
  router.post("/signup",async(req,res)=>{
      
@@ -82,7 +84,7 @@ else{
        const password=req.body.password;
        const address=req.body.address;
        
-    
+       const creditcard=req.body.creditcard;
     const existemail=await sequelize.models.user.findOne({ where: { email: email } });
     if(existemail){
     
@@ -109,11 +111,11 @@ else{
                   if (err)
                     return res.status(500).send(err);
                     sequelize.models.user.create({
-                     Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"admin"
+                     Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"admin" ,creditcardNo:creditcard
                
                         }).then(async (data)=>{
-               res.cookie('reg',"true", { httpOnly: true });
-               res.render("signup",{message:"register to the system"});
+              
+               res.render("home",{message:"register to the system"});
               console.log("data sent");
            
                         }).catch((err)=>{

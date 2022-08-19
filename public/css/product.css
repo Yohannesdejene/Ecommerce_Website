@@ -264,6 +264,12 @@ img{
 .btn-dark:hover{
     background: var(--carribean-green);
 }
+.category{
+position:relative;
+ left:200px;
+ font-size:20px;
+
+}
 
 
 

@@ -30,7 +30,7 @@ app.use("/user",userRoute);
 app.use("/home",homeRoute);
 
 async function fun(){
- await sequelize.sync({ alter: true });
+ await sequelize.sync({alter: true });
 }fun();
  app.listen(3000,(erer,result)=>{
 

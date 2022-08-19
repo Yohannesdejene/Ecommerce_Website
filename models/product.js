@@ -36,7 +36,9 @@ models.product.belongsToMany(models.user, {through:models.purchased})
    description:{
     type:DataTypes.STRING,
    },
-
+   quantity:{
+    type:DataTypes.INTEGER,
+   }
 
 
   }, {

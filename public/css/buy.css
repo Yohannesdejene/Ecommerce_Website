@@ -86,6 +86,20 @@ background-color:blue;
    width:80%;
  border-radius:10%;
 }
+#quantity{
+    position:relative;
+   left:50px;
+   top:70px;
+   width:80%;
+ border-radius:10%;
+}
+#choosequantity{
+    position:relative;
+   left:50px;
+   top:70px;
+   width:80%;
+ border-radius:10%;
+}
 #picture{
     position:relative;
     top:50px;

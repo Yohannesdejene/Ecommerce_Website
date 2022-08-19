@@ -21,6 +21,9 @@ res.render("home");
 })
 
 router.get("/products",(req,res)=>{
+
+
+
    sequelize.models.product.findAll({ 
    }).then((data)=>{
    console.log(data);
@@ -31,7 +34,51 @@ router.get("/products",(req,res)=>{
     
   
 })
+router.get("/shoecategory",(req,res)=>{
 
+
+   
+   sequelize.models.product.findAll({ 
+   where:{categoryId:1},
+   }).then((data)=>{
+   console.log(data);
+  res.render("products",{datas:data});
+   }).catch((err)=>{
+       console.log(err)
+   });
+    
+  
+})
+router.get("/cosmoticscategory",(req,res)=>{
+
+
+   
+   sequelize.models.product.findAll({ 
+   where:{categoryId:2},
+   }).then((data)=>{
+   console.log(data);
+  res.render("products",{datas:data});
+   }).catch((err)=>{
+       console.log(err)
+   });
+    
+  
+})
+router.get("/electronicscategory",(req,res)=>{
+
+
+   
+   sequelize.models.product.findAll({ 
+   where:{categoryId:3},
+   }).then((data)=>{
+   console.log(data);
+  res.render("products",{datas:data});
+   }).catch((err)=>{
+       console.log(err)
+   });
+    
+  
+})
 
 router.get("/signup",(req,res)=>{
 res.render("signup",{message:""});
@@ -77,24 +124,21 @@ res.render("signuptobuy",{message:""});
 })
 
 router.post("/tobuy",async(req,res)=>{
-  
+  console.log("in b=tobuy page")
 const name=req.query.name;
 const price=req.query.price;
 const picture=req.query.picture;
 
 res.cookie("name", name, {
       httpOnly: true,
-    maxAge:1000*60*60*24,
       Secure:true,
    });
 res.cookie("picture",picture,{
    httpOnly: true,
-   maxAge:1000*60*60*24,
      Secure:true,
 });
 res.cookie("price",price,{
-   httpOnly: true,
-   maxAge:1000*60*60*24,
+   httpOnly: true, 
      Secure:true,
 });
 
@@ -104,17 +148,22 @@ res.cookie("price",price,{
    if (token) {
       const data = jwt.verify(token, mysecret);
       const email= data.email;
+      const uid=data.userId;
      const productdata=await sequelize.models.product.findOne({where:{name:name}&&{picture:picture}});
      const productId=productdata.id;
+     const quantity=req.body.quantity;
+    const x=productdata.quantity-quantity;
      sequelize.models.purchased.create({
      time:Date.now(),
      productId: productId,
-     userEmail:email,
+     userId:uid,
      }).then(data=>{
+  
    console.log("data sent");
       return res.render("afterbuy");
      }).catch(err=>{
         console.log("error");
+        console.log(err);
      });
      
    }
@@ -167,11 +216,15 @@ router.post("/logintobuy",async(req,res)=>{
                    sequelize.models.purchased.create({
                    time:Date.now(),
                    productId:productId,
-                   userEmail:existemail,
+                   userEmail:data.email,
                   
                    }).then((data)=>{
                  console.log("data sent");
-           
+           res.cookie('name','price','picture', {
+
+            maxAge: 0,
+            overwrite: true,
+          });
                      return res.render("afterbuy");
                     })
                   .catch(err=>{
@@ -209,7 +262,7 @@ router.post("/logintobuy",async(req,res)=>{
       const email=req.body.email;
       const password=req.body.password;
       const address=req.body.address;
-      
+     
    
    const existemail=await sequelize.models.user.findOne({ where: { email: email } });
    if(existemail){
@@ -237,7 +290,7 @@ router.post("/logintobuy",async(req,res)=>{
                  if (err)
                    return res.status(500).send(err);
                    sequelize.models.user.create({
-                    Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"admin"
+                    Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"admin",creditcardNo:creditcard
               
                        }).then(async (data)=>{
             

@@ -26,6 +26,7 @@ router.post("/addProduct",authController.authorization,adminController.adminauth
 const description=req.body.description;
 const gender=req.body.gender;
 const category=req.body.category;
+const quantity=req.body.quantity;
 console.log(category);
 const mycategory=await sequelize.models.category.findOne({where:{Cname:category}});
 console.log(req.files);
@@ -40,7 +41,7 @@ console.log(req.files);
             if (err)
               return res.status(500).send(err);
               sequelize.models.product.create({
-               name:name,oldprice:oldprice,newprice:newprice,description:description,gender:gender,picture:img_name,categoryId:mycategory.id
+               name:name,oldprice:oldprice,newprice:newprice,description:description,gender:gender,picture:img_name,categoryId:mycategory.id,quantity:quantity
          
                   }).then(async(data)=>{
     const products=await sequelize.models.product.findAll();

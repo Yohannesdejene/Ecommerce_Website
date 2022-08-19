@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/product.css" />
     <!-- font awesome -->
-    
+   
   </head>
 <body>
   <div class="body">
@@ -19,10 +19,16 @@
         <li><a href="/user/signup">REGISTER</a></li>
       </ul>
       </nav>
+    <div class="category">
+      <h4> Categories</h4>
+      <input type="button" id="button" value="SHOE" onclick="shoe()" />
+      <input type="button" id="button" value="COSMOTICS" onclick="cosmotics()" />
+      <input type="button" id="button" value="ELECTRONICS" onclick="electronics()" />
+    </div>
     <div class="products">
      
       <div class="container">
-        <h1 class="lg-title">Special Shoes With Offers</h1>
+        <h1 class="lg-title">Special products With Offers</h1>
         <p class="text-light">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
           quos sit consectetur, ipsa voluptatem vitae necessitatibus dicta
@@ -170,6 +176,64 @@
     </div>
   </div>
   <script>
+    function shoe() {
+       fetch(
+          "http://localhost:3000/user/shoecategory",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+        }
+        function cosmotics() {
+       fetch(
+          "http://localhost:3000/user/cosmoticscategory",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+        }
+        function electronics() {
+       fetch(
+          "http://localhost:3000/user/electronicscategory",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+          
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+        }
     function go () {
       for(var i=0;i<datas.length;i++){
       // (A) VARIABLES TO PASS

@@ -21,6 +21,12 @@ models.user.belongsToMany(models.product,{through:models.purchased})
     }
   }
   user.init({
+    id:{
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
     Fname:{
      type: DataTypes.STRING,
      allowNull:false,
@@ -32,14 +38,20 @@ models.user.belongsToMany(models.product,{through:models.purchased})
     email:{
     type: DataTypes.STRING,
     allowNull:false,
-    primaryKey:true,
+    
     },
+
     password:{
       type:DataTypes.STRING,
       allowNull:false,
 
 
     },
+    creditcardNo:{
+      type: DataTypes.INTEGER,
+      allowNull:false,
+     
+      },
     address:{
       type:DataTypes.STRING,
       allowNull:false,

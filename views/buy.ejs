@@ -13,12 +13,11 @@
           picture = params.get("picture"),
           price = params.get("price"),
           name = params.get("name");
-       
+
         const todo = {
           title: "Some really important work to finish",
         };
 
-      
         const img = "this is the";
         const data = { name, img };
         fetch(
@@ -54,39 +53,42 @@
       <div id="leftbox">
         <img
           id="picture"
-          src="/images/product_image/images.jpg"
+          src="/images/product_image/<%=data.picture%>"
           alt="picture"
         />
       </div>
       <div id="rightbox">
-        <h1 id="name">NAME : NAME OF THE PRODUCT</h1>
+        <div class="nameclass">
+          
+          <h1 name="name" id="name">Name :<%=data.name%></h1>
+        </div>
         <br /><br />
-
-        <h1 id="price">price : 500 $</h1>
-
+        <div class="priceclass">
+          
+          <h1 id="price" name="price">Price :<%=data.newprice%></h1>
+        </div>
         <br /><br />
-        <h4 id="description"><%if(data){%><%=data.description%> <%}%></h4>
-
+        <div class="descriptionclass">
+           
+           <h4 id="description"><%if(data){%>Description :<%=data.description%></h4>
+        </div>
+        <h4 id="quantity">Available quantity :<%=data.quantity%></h4>
+        <%}%>
         <br /><br />
         <br />
+        <div id="choosequantity">
+          <label for="quantityNo" class="label">choose quantity </label>
+          <input
+            type="number"
+            id="quantityNo"
+            name="quantityNo"
+            min=1
+            max=<%=data.quantity%>
+          />
+        </div>
         <input type="button" id="button" value="BUY" onclick="get()" />
       </div>
     </div>
-    <script>
-      // (A) GET THE PARAMETERS
-      var params = new URLSearchParams(window.location.search),
-        picture = params.get("picture"),
-        price = params.get("price"),
-        name = params.get("name");
-
-      document.getElementById("price").innerHTML = price;
-      document.getElementById("name").innerHTML = name;
-
-      document.getElementById("picture").src =
-        "/images/product_image/" + picture;
-
-      // (B) IT WORKS!
-      // ["Hello", "World"]
-    </script>
+   
   </body>
 </html>
