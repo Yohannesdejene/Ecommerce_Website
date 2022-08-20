@@ -42,6 +42,9 @@ models.user.belongsToMany(models.product,{through:models.purchased})
 
 
     },
+    gender:{
+      type:DataTypes.STRING,
+    },
     creditcardNo:{
       type: DataTypes.INTEGER,
       allowNull:false,

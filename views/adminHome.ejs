@@ -12,15 +12,14 @@
   
 
 <div class="topnav">
-          <a class="active" href="/admin/home">HOME</a>
+          <a class="active"  href="/admin/adminHome">HOME</a>
           <a  href="/admin/addProduct">ADD PRODUCTS</a>
-          <a href="/admin/soldProduct">SOLD PRODUCTS</a>
+          <a  href="/admin/soldProducts">SOLD PRODUCTS</a>
           
 </div>
-
-<div class="new">
-
-
+<%if(data){%>
+<h1> WELL COME ,<%=data.Fname%></h1>
+<%}%>
 </div>
 
 </body>

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-
-   
+models.purchased.belongsTo(models.product);
+models.purchased.belongsTo(models.user);
     }
   }
   purchased.init({
@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
 
      type:DataTypes.DATEONLY,
     },
+    quantity:{
+      type:DataTypes.INTEGER,
+
+    }
    
     
   }, {

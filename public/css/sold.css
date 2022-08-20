@@ -22,3 +22,32 @@
         background-color:rgb(224, 104, 18);
         color:white;
     }
+    .table{
+      position:relative;
+      left:100px;
+      top:50px;
+      width:1300px;
+      height:500px;
+     border:10px solid black;
+     Overflow-y:scroll
+
+    }
+    table{
+        width:100%;
+      }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        background-color:lightblue;
+      }
+      th{
+        background-color:honeydew;
+      }
+   td{
+    text-align: center;
+   }
+    body{
+        background-color:cadetblue;
+    }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"    href="/css/sold.css"/>
+    <title>title</title>
+</head>
+<body>
+
+  
+
+<div class="topnav">
+          <a  href="/admin/adminHome">HOME</a>
+          <a  href="/admin/addProduct">ADD PRODUCTS</a>
+          <a  class="active" href="/admin/soldProducts">SOLD PRODUCTS</a>
+          
+</div>
+ <div class="table">
+    <table>
+        <tr>
+          <th>NAME OF THE USER</th>
+          <th style="width:250px;">EMAIL</th>
+          <th>GENDER</th>
+          <th>PRODUCT NAME</th>
+          <th>PRICE</th>
+          <th>QUANTITY</th>
+          <th style="width:150px;">DATE</th>
+        </tr>
+        <%if(data){%>
+        <%for(var i=0;i<data.length;i++){%>
+        <tr>
+          <td><%=data[i].user.Fname%> <%=data[i].user.Lname%></td>
+          <td><%=data[i].user.email%></td>
+          <td><%=data[i].user.gender%></td>
+          <td><%=data[i].user.products[0].name%></td>
+          
+          <td><%=data[i].user.products[0].newprice%></td>
+          <td><%=data[i].quantity%></td>
+          <td><%=data[i].time%></td>
+        </tr>
+        <%}%>
+        <%}else{%>
+            <p>NO DATA YET</p>
+            <%}%>
+       
+      </table>
+
+ </div>
+
+
+
+</body>
+</html
