@@ -15,16 +15,27 @@
    
       <ul>
         <li><a href="/user/products">HOME</a></li>
-        <li><a href="/user/login">LOGIN</a></li>
-        <li><a href="/user/signup">REGISTER</a></li>
+        <li><a href="/home/login">LOGIN</a></li>
+        <li><a href="/home/signup">REGISTER</a></li>
       </ul>
       </nav>
+    
     <div class="category">
-      <h4> Categories</h4>
-      <input type="button" id="button" value="SHOE" onclick="shoe()" />
-      <input type="button" id="button" value="COSMOTICS" onclick="cosmotics()" />
-      <input type="button" id="button" value="ELECTRONICS" onclick="electronics()" />
+      <p class="label">CATEGORY</p>
+      <select id="selectBox" onchange="changeFunc();">
+        <option value="ALL"></option>
+        <option value="SHOE">SHOE</option>
+        <option value="COSMOTICS">COSMOTICS</option>
+        <option value="ELECTRONICS">ELECTRONICS</option>
+        <option value="CLOTHS">CLOTHS</option>
+        <option value="ALL">ALL PRODUCTS</option>
+       </select>
+       <div class="gender">
+        <input type="button"  value="For Men" onclick="MEN()">
+        <input type="button" value="For Women" onclick="WOMEN()">
+      </div>
     </div>
+    
     <div class="products">
      
       <div class="container">
@@ -176,9 +187,115 @@
     </div>
   </div>
   <script>
-    function shoe() {
+
+    
+   function changeFunc() {
+    var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+   
+  if(selectedValue=="SHOE"){
+  fetch(
+          "http://localhost:3000/user/products/1",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+    
+  }else if(selectedValue=="COSMOTICS"){
+  fetch(
+          "http://localhost:3000/user/products/2",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+    
+  }else if(selectedValue=="ELECTRONICS"){
+  fetch(
+          "http://localhost:3000/user/products/3",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+    
+}else if(selectedValue=="CLOTHS"){
+  fetch(
+          "http://localhost:3000/user/products/4",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+    
+  }else if(selectedValue=="ALL"){
+  fetch(
+          "http://localhost:3000/user/products",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+           
+          }
+        )
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+    
+  }
+
+
+
+   }
+    function MEN() {
        fetch(
-          "http://localhost:3000/user/shoecategory",
+          "http://localhost:3000/user/products/10",
           {
             method: "GET",
 
@@ -195,9 +312,9 @@
             document.close();
           });
         }
-        function cosmotics() {
+        function WOMEN() {
        fetch(
-          "http://localhost:3000/user/cosmoticscategory",
+          "http://localhost:3000/user/products/20",
           {
             method: "GET",
 
@@ -214,26 +331,7 @@
             document.close();
           });
         }
-        function electronics() {
-       fetch(
-          "http://localhost:3000/user/electronicscategory",
-          {
-            method: "GET",
-
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-           
-          }
-          
-        )
-          .then((res) => res.text())
-          .then((htmlStr) => {
-            document.open();
-            document.write(htmlStr);
-            document.close();
-          });
-        }
+       
     function go () {
       for(var i=0;i<datas.length;i++){
       // (A) VARIABLES TO PASS

@@ -31,7 +31,7 @@ if(existemail){
       if (result) {
          // password is valid
          if(data.userType=="admin"){
-            const token = jwt.sign({ email:data.email,userId:data.id, utype:data.userType }, mysecret);
+            const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
          
             return res
               .cookie("token", token, {
@@ -45,7 +45,7 @@ if(existemail){
         //res.render("adminHome",{data:data})
          }
          else{
-    const token = jwt.sign({ email:data.email,userId:data.id, utype:data.userType }, mysecret);
+    const token = jwt.sign({ email:data.email, utype:data.userType }, mysecret);
      return res
     .cookie("token", token, {
       httpOnly: true,
@@ -111,11 +111,18 @@ router.get("/signup",(req,res)=>{
                   if (err)
                     return res.status(500).send(err);
                     sequelize.models.user.create({
-                     Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"admin" ,creditcardNo:creditcard
+                     Fname:Fname,Lname:Lname,email:email,password:hashedpassword,address:address,profilePhoto:img_name,userType:"user" ,creditcardNo:creditcard
                
                         }).then(async (data)=>{
-              
-               res.render("home",{message:"register to the system"});
+                           sequelize.models.product.findAll({ 
+                           }).then((data)=>{
+                           console.log(data);
+                          res.render("products",{datas:data});
+                           }).catch((err)=>{
+                               console.log(err)
+                           });
+
+               
               console.log("data sent");
            
                         }).catch((err)=>{

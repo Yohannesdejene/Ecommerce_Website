@@ -43,9 +43,16 @@ console.log(req.files);
               sequelize.models.product.create({
                name:name,oldprice:oldprice,newprice:newprice,description:description,gender:gender,picture:img_name,categoryId:mycategory.id,quantity:quantity
          
-                  }).then(async(data)=>{
-    const products=await sequelize.models.product.findAll();
- res.render("products",{datas:products});
+                  }).then((data)=>{
+    sequelize.models.product.findAll({
+        
+    }).then(data=>{
+        console.log("data sent");
+        res.render("products",{datas:data});
+    }).catch(err=>{
+        conso.log(err);
+    })
+ 
     }).catch((err)=>{
 
         console.log(err);

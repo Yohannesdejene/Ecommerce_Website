@@ -19,10 +19,7 @@ const router=express.Router();
 router.get("/home",(req,res)=>{
 res.render("home");
 })
-
 router.get("/products",(req,res)=>{
-
-
 
    sequelize.models.product.findAll({ 
    }).then((data)=>{
@@ -31,51 +28,104 @@ router.get("/products",(req,res)=>{
    }).catch((err)=>{
        console.log(err)
    });
-    
-  
-})
-router.get("/shoecategory",(req,res)=>{
 
+})
+router.get("/products/:id",(req,res)=>{
+  const id=req.params.id;
+  if(id==1){
 
    
    sequelize.models.product.findAll({ 
-   where:{categoryId:1},
+      where:{categoryId:1},
+      }).then((data)=>{
+      console.log(data);
+     res.render("products",{datas:data});
+      }).catch((err)=>{
+          console.log(err)
+      });
+  }
+  else if(id==2){
+   sequelize.models.product.findAll({ 
+      where:{categoryId:2},
+      }).then((data)=>{
+      console.log(data);
+     res.render("products",{datas:data});
+      }).catch((err)=>{
+          console.log(err)
+      });
+       
+  }
+  else if(id==3){
+
+   
+   sequelize.models.product.findAll({ 
+      where:{categoryId:3},
+      }).then((data)=>{
+      console.log(data);
+     res.render("products",{datas:data});
+      }).catch((err)=>{
+          console.log(err)
+      });
+  }
+  
+  else if(id==4){
+
+   
+   sequelize.models.product.findAll({ 
+      where:{categoryId:4},
+      }).then((data)=>{
+      console.log(data);
+     res.render("products",{datas:data});
+      }).catch((err)=>{
+          console.log(err)
+      });
+  }
+  else if(id==10){
+   sequelize.models.product.findAll({ 
+      where:{gender:"MALE"},
+      }).then((data)=>{
+      console.log(data);
+     res.render("products",{datas:data});
+      }).catch((err)=>{
+          console.log(err)
+      });
+  }
+  else if(id==20){
+   sequelize.models.product.findAll({ 
+      where:{gender:"FEMALE"},
+      }).then((data)=>{
+      console.log(data);
+     res.render("products",{datas:data});
+      }).catch((err)=>{
+          console.log(err)
+      });
+  }
+  
+  
+else {
+
+
+   sequelize.models.product.findAll({ 
    }).then((data)=>{
    console.log(data);
   res.render("products",{datas:data});
    }).catch((err)=>{
        console.log(err)
    });
+}
+  
+})
+
+router.get("/shoecategory",(req,res)=>{
     
   
 })
 router.get("/cosmoticscategory",(req,res)=>{
 
-
-   
-   sequelize.models.product.findAll({ 
-   where:{categoryId:2},
-   }).then((data)=>{
-   console.log(data);
-  res.render("products",{datas:data});
-   }).catch((err)=>{
-       console.log(err)
-   });
-    
   
 })
 router.get("/electronicscategory",(req,res)=>{
 
-
-   
-   sequelize.models.product.findAll({ 
-   where:{categoryId:3},
-   }).then((data)=>{
-   console.log(data);
-  res.render("products",{datas:data});
-   }).catch((err)=>{
-       console.log(err)
-   });
     
   
 })
@@ -148,17 +198,29 @@ res.cookie("price",price,{
    if (token) {
       const data = jwt.verify(token, mysecret);
       const email= data.email;
-      const uid=data.userId;
+    
      const productdata=await sequelize.models.product.findOne({where:{name:name}&&{picture:picture}});
      const productId=productdata.id;
-     const quantity=req.body.quantity;
+     const quantity=req.cookies.quantity;
+    
     const x=productdata.quantity-quantity;
+    console.log("qauntity from cookie",quantity)
+    console.log(x);
      sequelize.models.purchased.create({
      time:Date.now(),
      productId: productId,
-     userId:uid,
+     userEmail:email,
      }).then(data=>{
-  
+
+    sequelize.models.product.update({ name:productdata.name,oldprice:productdata.oldprice,newprice:productdata.newprice,description:productdata.description,gender:productdata.gender,picture:productdata.picture,categoryId:productdata.categoryId,quantity:x }, {
+         where: {
+           id:productdata.id, 
+         }
+       }).then(data=>{
+         console.log("updated");
+       }).catch(err=>{
+         console.log(err);
+       })
    console.log("data sent");
       return res.render("afterbuy");
      }).catch(err=>{
@@ -320,11 +382,6 @@ router.get("/afterbuy",(req,res)=>{
 
    res.render("afterbuy");
    })
-
-
-router.get("/add",(req,res)=>{
-    res.send("user  add");
-})
 
 
 
